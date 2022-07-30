@@ -1,5 +1,7 @@
 from settings import *
 from random import seed, randint
+from player import Player
+
 # Class Imports go here
 seed(randint(1, 999999999999999999))
 
@@ -19,7 +21,7 @@ class World():
         self.score = 0
         
         # Create Sprite Groups Here
-        # self.player = pygame.sprite.GroupSingle(Player(...))
+        self.player = pygame.sprite.GroupSingle(Player((70, 5)))
         # self.walls = pygame.sprite.Group()
         
         # Setting Game Status to Setup
@@ -39,8 +41,8 @@ class World():
     #Update Function if the Game Status is Setup
     def update_setup(self):
         # Empty Sprite Groups Here
-        # self.walls.empty()
-        
+        self.player.sprite.__init__(((70, 5)))
+
         # Reset Variables here
         self.score = 0
         
@@ -81,10 +83,11 @@ class World():
         n = randint(1, 7)
         
         # More Game Logic to Run every frame
+        self.player.update()
         
         # Drawing the Sprites to the Display through Sprite groups
         # self.walls.draw(self.display)
-        # self.player.draw(self.display)
+        self.player.draw(self.display)
         
         # Death Condition goes here
         # Ex: if (hit_groud): self.status = self.status_dict['gameover']
